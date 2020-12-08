@@ -1,0 +1,17 @@
+﻿@using Website.Models
+
+@model DetailViewModel
+
+
+@if (Model != null)
+{
+    <div class="jumbotron">
+        <h1>@Model.Label.Name Details</h1>
+        <p class="lead">Hier is het sentiment over @Model.Label.Name te vinden</p>
+    </div>
+
+}
+else
+{
+    <p>ERROR</p>
+}
