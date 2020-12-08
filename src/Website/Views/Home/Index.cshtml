@@ -12,9 +12,9 @@
     <div class="col-md-4">
         <h2>Stap 1</h2>
         <p>
-           Het opzetten van een resource in Azure
+            Het opzetten van een resource in Azure
         </p>
-   
+
     </div>
     <div class="col-md-4">
         <h2>Stap 2</h2>
@@ -24,4 +24,11 @@
         <h2>Stap 3</h2>
         <p>Het daadwerkelijk dynamisch maken van het overzicht</p>
     </div>
-</div>
+
+    <div class="col-md-12">
+
+        @{
+            Html.RenderAction("Index", "Overview");
+        }
+    </div>
+ </div>

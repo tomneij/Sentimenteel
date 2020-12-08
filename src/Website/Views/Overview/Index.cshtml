@@ -1,0 +1,28 @@
+﻿@using Website.Models
+
+@model OverviewViewModel
+
+<h2>Overview!</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Positief</th>
+            <th scope="col">Neutraal</th>
+            <th scope="col">Negatief</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <th scope="row"><img src="@item.Icon" title="@item.Name" width="100" /></th>
+                <td><p class="text-success">@item.Positive %</p></td>
+                <td><p class="text-warning">@item.Neutral %</p></td>
+                <td><p class="text-danger">@item.Negative %</p></td>
+            </tr>
+        }
+    </tbody>
+</table>
