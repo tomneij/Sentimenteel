@@ -1,8 +1,12 @@
 [Oo]bj/
-bin/
-src/**/[Bb]in/
-specs/**/[Bb]in/
+[Bb]in/
+/src/**/[Bb]in/
+/src/**/[Oo]bj/
 
+
+
+.suo
+.vs
 
 .nuget/
 .idea/
@@ -30,7 +34,6 @@ temp/
 *.ncrunchsolution
 .vscode
 nCrunchTemp*.*
-Onvz.sln.vsext.disable
 .axoCover/*
 *.vsext
 UpgradeLog*.htm
