@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Website.Factories;
+using Website.Helpers;
 using Website.Models;
 
 namespace Website.Controllers
@@ -7,32 +9,46 @@ namespace Website.Controllers
     public class SentimentController : Controller
     {
 
-        private string[] Labels = { "ONVZ", "Ohra", "CZ", "VGZ", "ZilverenKruis" };
-
-     
         public ActionResult Overview()
         {
             var overviewModel = new OverviewViewModel();
             var overviewFactory = new OverviewFactory();
            
-            foreach (var label in Labels)
+            foreach (var label in Constants.Labels)
             {
-                var overviewItem = overviewFactory.GetLabelSentiment(label);
+                var overviewItem = overviewFactory.GetLabelSentiment(label.Name);
                 overviewModel.Items.Add(overviewItem);
             }
 
             return View(overviewModel);
         }
 
-        public ActionResult Tweets()
+        public ActionResult Details(string id)
+        {
+            var label = GetLabel(id);
+            if (label != null)
+            {
+                var viewModel = new DetailViewModel
+                {
+                    Label = label,
+                    Tweets = SentimentHelper.GetTweetsByLabel(label.Name)
+                };
+
+                return View(viewModel);
+            }
+
+            return View();
+        }
+
+        public ActionResult Trend()
         {
             return View();
         }
 
 
-        public ActionResult Trend()
+        private LabelModel GetLabel(string id)
         {
-            return View();
+            return Constants.Labels.FirstOrDefault(l => l.Name.Equals(id));
         }
     }
 }

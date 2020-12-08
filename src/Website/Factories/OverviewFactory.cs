@@ -1,4 +1,5 @@
 ﻿using System;
+using Website.Helpers;
 using Website.Models;
 
 namespace Website.Factories
@@ -12,8 +13,14 @@ namespace Website.Factories
 
         public OverviewItemViewModel GetLabelSentiment(string label)
         {
-
             var rnd = new Random();
+
+            var allTweets = SentimentHelper.GetTweetsByLabel(label);
+
+
+
+
+
 
             return new OverviewItemViewModel
             {
@@ -24,6 +31,12 @@ namespace Website.Factories
                 Negative = rnd.Next(1,100),
             };
         }
+
+
+
+
+
+
 
         private string GetIcon(string label)
         {

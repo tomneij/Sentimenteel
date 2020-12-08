@@ -120,14 +120,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\OverviewController.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\SentimentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Factories\OverviewFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SentimentHelper.cs" />
+    <Compile Include="Models\LabelModel.cs" />
     <Compile Include="Models\OverviewItemViewModel.cs" />
+    <Compile Include="Models\DetailViewModel.cs" />
     <Compile Include="Models\OverviewViewModel.cs" />
+    <Compile Include="Models\TweetSentimentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SentimentService.cs" />
     <Compile Include="Services\TwitterFeedService.cs" />
@@ -174,7 +179,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Overview\Index.cshtml" />
+    <Content Include="Views\Sentiment\Overview.cshtml" />
+    <Content Include="Views\Sentiment\Details.cshtml" />
+    <Content Include="Views\Sentiment\Trend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
