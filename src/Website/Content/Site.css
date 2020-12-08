@@ -51,3 +51,25 @@ textarea {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
 }
+
+.hoverable-row:hover
+{
+    cursor:pointer
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
+}

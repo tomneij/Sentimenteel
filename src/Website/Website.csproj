@@ -183,6 +183,7 @@
     <Content Include="Views\Sentiment\Overview.cshtml" />
     <Content Include="Views\Sentiment\Details.cshtml" />
     <Content Include="Views\Sentiment\Trend.cshtml" />
+    <Content Include="Views\Sentiment\Tweets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
