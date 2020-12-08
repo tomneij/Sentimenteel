@@ -8,7 +8,7 @@ namespace Website.Controllers
 {
     public class SentimentController : Controller
     {
-
+        [ChildActionOnly]
         public ActionResult Overview()
         {
             var overviewModel = new OverviewViewModel();
@@ -28,6 +28,19 @@ namespace Website.Controllers
             var label = GetLabel(id);
             if (label != null)
             {
+                return View(label);
+            }
+
+            return View();
+        }
+
+
+        [ChildActionOnly]
+        public ActionResult Tweets(string id)
+        {
+            var label = GetLabel(id);
+            if (label != null)
+            {
                 var viewModel = new DetailViewModel
                 {
                     Label = label,
@@ -40,7 +53,8 @@ namespace Website.Controllers
             return View();
         }
 
-        public ActionResult Trend()
+        [ChildActionOnly]
+        public ActionResult Trend(string id)
         {
             return View();
         }

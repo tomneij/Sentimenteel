@@ -1,11 +1,22 @@
 ﻿@using Website.Models
 
 @model OverviewViewModel
+@{
+    Layout = null;
+}
 
-<table class="table">
+<script>
+    // ja ranzig...
+    function goto(href) {
+        window.location = href;
+    }
+</script>
+
+
+<table class="table  table-hover">
     <thead>
         <tr>
-            <th scope="col">Name</th>
+            <th scope="col">Label</th>
             <th scope="col">Positief</th>
             <th scope="col">Neutraal</th>
             <th scope="col">Negatief</th>
@@ -15,11 +26,11 @@
 
         @foreach (var item in Model.Items)
         {
-            <tr>
-                <th scope="row"><a href="/sentiment/details/@item.Name"><img src="@item.Icon" title="@item.Name" width="100" /></a></th>
-                <td><p class="text-success">@item.Positive %</p></td>
-                <td><p class="text-warning">@item.Neutral %</p></td>
-                <td><p class="text-danger">@item.Negative %</p></td>
+            <tr class="hoverable-row" onclick="javascript:goto('/sentiment/details/@item.Name')">
+                <th scope="row"><img src="@item.Icon" title="@item.Name" width="100" /></th>
+                <td><p class="font-weight-bold text-success">@item.Positive %</p></td>
+                <td><p class="font-weight-bold text-warning">@item.Neutral %</p></td>
+                <td><p class="font-weight-bold text-danger">@item.Negative %</p></td>
             </tr>
         }
     </tbody>
