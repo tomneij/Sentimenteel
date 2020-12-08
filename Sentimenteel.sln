@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "src\Website\Website.csproj", "{8856080F-F31B-432E-90C7-9DA8C0FE88BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentimenteel.Tests", "Sentimenteel.Tests\Sentimenteel.Tests.csproj", "{29E1173C-E652-40C1-B756-D87A4662BE4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8856080F-F31B-432E-90C7-9DA8C0FE88BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8856080F-F31B-432E-90C7-9DA8C0FE88BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8856080F-F31B-432E-90C7-9DA8C0FE88BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E1173C-E652-40C1-B756-D87A4662BE4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E1173C-E652-40C1-B756-D87A4662BE4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E1173C-E652-40C1-B756-D87A4662BE4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E1173C-E652-40C1-B756-D87A4662BE4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
