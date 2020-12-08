@@ -5,30 +5,14 @@
 <div class="jumbotron">
     <h1>Onvz Sentiment Calculator</h1>
     <p class="lead">Hier is het sentiment over Onvz te vinden</p>
-    <p><a href="http://onvz-sentiment-calculator.azurewebsites.net/" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Stap 1</h2>
-        <p>
-            Het opzetten van een resource in Azure
-        </p>
-
-    </div>
-    <div class="col-md-4">
-        <h2>Stap 2</h2>
-        <p>Het opzetten van het statisch raamwerk zodat er een lijst getoont kan worden met random sentiments</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Stap 3</h2>
-        <p>Het daadwerkelijk dynamisch maken van het overzicht</p>
-    </div>
 
     <div class="col-md-12">
 
         @{
-            Html.RenderAction("Index", "Overview");
+            Html.RenderAction("Overview", "Sentiment");
         }
     </div>
  </div>

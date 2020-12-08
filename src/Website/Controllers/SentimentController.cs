@@ -4,13 +4,13 @@ using Website.Models;
 
 namespace Website.Controllers
 {
-    public class OverviewController : Controller
+    public class SentimentController : Controller
     {
 
         private string[] Labels = { "ONVZ", "Ohra", "CZ", "VGZ", "ZilverenKruis" };
 
      
-        public ActionResult Index()
+        public ActionResult Overview()
         {
             var overviewModel = new OverviewViewModel();
             var overviewFactory = new OverviewFactory();
@@ -22,6 +22,17 @@ namespace Website.Controllers
             }
 
             return View(overviewModel);
+        }
+
+        public ActionResult Tweets()
+        {
+            return View();
+        }
+
+
+        public ActionResult Trend()
+        {
+            return View();
         }
     }
 }
