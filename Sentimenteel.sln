@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30711.63
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1300
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "src\Website\Website.csproj", "{8856080F-F31B-432E-90C7-9DA8C0FE88BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentimenteel.Tests", "Sentimenteel.Tests\Sentimenteel.Tests.csproj", "{29E1173C-E652-40C1-B756-D87A4662BE4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentimenteel.Tests", "src\Sentimenteel.Tests\Sentimenteel.Tests.csproj", "{29E1173C-E652-40C1-B756-D87A4662BE4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
