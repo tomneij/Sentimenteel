@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Trend";
+}
+
+@section head {
+    <script>
+        window.onload = function() {
+
+            var chart = new CanvasJS.Chart("chartContainer",
+                {
+                    animationEnabled: true,
+                    title: {
+                        text: "Trends By Month"
+                    },
+                    toolTip: {
+                        shared: true,
+                        fontColor: "black"
+                    },
+                    data: [
+                        {
+                            type: "line",
+                            name: "Positief",
+                            showInLegend: true,
+                            lineColor: "green",
+                            markerColor: "green",
+                            dataPoints: @Html.Raw(ViewBag.Positive)
+                        }, {
+                            type: "line",
+                            name: "Neutraal",
+                            showInLegend: true,
+                            lineColor: "blue",
+                            markerColor: "blue",
+                            dataPoints: @Html.Raw(ViewBag.Neutral)
+                        }, {
+                            type: "line",
+                            name: "Negatief",
+                            showInLegend: true,
+                            lineColor: "red",
+                            markerColor: "red",
+                            dataPoints: @Html.Raw(ViewBag.Negative)
+                        }
+                    ]
+                });
+            chart.render();
+        }
+    </script>
+}
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+
+@section scripts {
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+}
+
