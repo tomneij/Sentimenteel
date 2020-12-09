@@ -1,6 +1,9 @@
 ﻿@using Website.Models
 
 @model LabelModel
+@{
+    Layout = null;
+}
 
 @if (Model != null)
 {
@@ -12,7 +15,7 @@ else
     <p>ERROR</p>
 }
 
-@section head {
+
     <script>
         window.onload = function() {
 
@@ -54,14 +57,8 @@ else
             chart.render();
         }
     </script>
-}
 
 
 
 
 
-
-
-@section scripts {
-    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-}
