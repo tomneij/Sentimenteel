@@ -22,3 +22,54 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/* CUSTOM STYLES */
+.navbar
+{
+    background-color: #333;
+    border-color: #333;
+}
+
+.jumbotron {
+    color: inherit;
+    background-color: #333;
+}
+
+.jumbotron h1,
+.jumbotron .h1 {
+    color: #fc0;
+}
+
+.jumbotron p {
+    color: #fff;
+}
+
+.container .jumbotron,
+.container-fluid .jumbotron {
+    border-radius: 0px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.hoverable-row:hover
+{
+    cursor:pointer
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
+}

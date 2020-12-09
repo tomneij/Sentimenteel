@@ -1,0 +1,31 @@
+﻿@using Website.Models
+
+@model LabelModel
+
+@if (Model != null)
+{
+    <div class="jumbotron">
+        <h1>@Model.Name Details</h1>
+        <p class="lead">Hier is het sentiment over @Model.Name te vinden</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @{
+                Html.RenderAction("Trend", "Sentiment");
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @{
+                Html.RenderAction("Tweets", "Sentiment");
+            }
+        </div>
+    </div>
+}
+else
+{
+    <p>ERROR</p>
+}
