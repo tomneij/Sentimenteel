@@ -1,12 +1,9 @@
 ﻿using System.Web.Mvc;
-using Website.Factories;
-using Website.Models;
 
 namespace Website.Controllers
 {
     public class HomeController : Controller
     {
-
         public ActionResult Index()
         {
             return View();

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Website.Factories;
 using Website.Helpers;
 using Website.Models;
 
@@ -13,12 +12,11 @@ namespace Website.Controllers
         [ChildActionOnly]
         public ActionResult Overview()
         {
-            var overviewModel = new OverviewViewModel();
-            var overviewFactory = new OverviewFactory();
+            var overviewModel = new OverviewModel();
            
             foreach (var label in Constants.Labels)
             {
-                var overviewItem = overviewFactory.GetLabelSentiment(label.Name);
+                var overviewItem = SentimentHelper.GetSentimentOverview(label.Name);
                 overviewModel.Items.Add(overviewItem);
             }
 
@@ -27,7 +25,7 @@ namespace Website.Controllers
 
         public ActionResult Details(string id)
         {
-            var label = GetLabel(id);
+            var label = LabelHelper.GetLabel(id);
             if (label != null)
             {
                 return View(label);
@@ -39,10 +37,10 @@ namespace Website.Controllers
         [ChildActionOnly]
         public ActionResult Tweets(string id)
         {
-            var label = GetLabel(id);
+            var label = LabelHelper.GetLabel(id);
             if (label != null)
             {
-                var viewModel = new DetailViewModel
+                var viewModel = new DetailModel
                 {
                     Label = label,
                     Tweets = SentimentHelper.GetTweetsByLabel(label.Name)

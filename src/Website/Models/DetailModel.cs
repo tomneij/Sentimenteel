@@ -2,7 +2,7 @@
 
 namespace Website.Models
 {
-    public class DetailViewModel
+    public class DetailModel
     {
         public LabelModel Label { get; set; }
 

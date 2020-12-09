@@ -1,4 +1,4 @@
-﻿namespace Website
+﻿namespace Website.Models
 {
     public enum Sentiment
     {

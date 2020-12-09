@@ -1,6 +1,6 @@
 ﻿namespace Website.Models
 {
-    public class OverviewItemViewModel
+    public class OverviewItemModel
     {
         public string Name { get; set; }
 
