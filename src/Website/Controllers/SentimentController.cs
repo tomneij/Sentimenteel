@@ -43,7 +43,7 @@ namespace Website.Controllers
                 var viewModel = new DetailModel
                 {
                     Label = label,
-                    Tweets = SentimentHelper.GetTweetsByLabel(label.Name)
+                    Tweets = SentimentHelper.GetTweetsByLabel(label.Name).ToList()
                 };
 
                 return View(viewModel);
