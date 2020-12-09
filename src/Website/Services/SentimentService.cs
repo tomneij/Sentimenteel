@@ -2,6 +2,7 @@
 using System.Configuration;
 using Azure;
 using Azure.AI.TextAnalytics;
+using Website.Models;
 
 namespace Website.Services
 {

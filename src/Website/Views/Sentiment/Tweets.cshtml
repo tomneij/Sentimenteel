@@ -1,13 +1,53 @@
 ﻿@using Website.Models
 
-@model DetailViewModel
+@model DetailModel
 @{
     Layout = null;
 }
 
+
+@functions 
+{
+    public string GetClassName(Sentiment sentiment)
+    {
+        switch (sentiment)
+        {
+            case Sentiment.Positive:
+                return "table-success";
+            case Sentiment.Negative:
+                return "table-danger";
+            case Sentiment.Neutral:
+            default:
+                return "table-secondary";
+
+        }
+    }
+} 
+
+
 @if (Model != null)
 {
-    <h2>Hier dus een lijst van Tweets waar je de inhoud kan bekijken</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tijd</th>
+                <th scope="col">Bericht</th>
+                <th scope="col">Sentiment</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Tweets)
+            {
+                <tr class="@GetClassName(item.Sentiment)">
+                    <th scope="row" width="100"><p>@item.Timestamp.ToString("dd-MM-yyyy")</p></th>
+                    <td><p class="">@item.Message</p></td>
+                    <td><p class="">@item.Sentiment.ToString()</p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
 }
 else
 {
