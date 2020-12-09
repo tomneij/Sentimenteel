@@ -8,6 +8,6 @@ namespace Website.Models
 
         public string Message { get; set; }
 
-        public Sentiment Sentiment { get; set; }  // Make Enum
+        public Sentiment Sentiment { get; set; }
     }
 }

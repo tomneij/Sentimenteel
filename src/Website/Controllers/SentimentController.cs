@@ -55,7 +55,7 @@ namespace Website.Controllers
         [ChildActionOnly]
         public ActionResult Trend(string id)
         {
-            var label = GetLabel(id);
+            var label = LabelHelper.GetLabel(id);
             if (label != null)
             {
                 var positive = SetPositiveDataPoints();
@@ -70,11 +70,6 @@ namespace Website.Controllers
             }
 
             return View();
-        }
-
-        private static LabelModel GetLabel(string id)
-        {
-            return Constants.Labels.FirstOrDefault(l => l.Name.Equals(id));
         }
 
         private static List<DataPoint> SetPositiveDataPoints()
