@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Website;
+using Website.Models;
 using Website.Services;
 
 namespace Sentimenteel.Tests.Services
