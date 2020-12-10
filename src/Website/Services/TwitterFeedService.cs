@@ -8,7 +8,7 @@ namespace Website.Services
 {
     public class TwitterFeedService
     {
-        public IEnumerable<TweetModel> GetTweets(string Keyword, DateTime from, DateTime to)
+        public IEnumerable<TweetModel> GetTweets(string keyword, DateTime from, DateTime to)
         {
             // get dynamic tweets
 

@@ -161,6 +161,7 @@
     <Compile Include="Models\OverviewItemModel.cs" />
     <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\OverviewModel.cs" />
+    <Compile Include="Models\TrendModel.cs" />
     <Compile Include="Models\TweetModel.cs" />
     <Compile Include="Models\TweetSentimentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
