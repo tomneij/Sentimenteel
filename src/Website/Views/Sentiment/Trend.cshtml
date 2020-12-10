@@ -7,7 +7,7 @@
 
 @if (Model != null)
 {
-    <h2>Hier komt de Grafiek ofzo</h2>
+    <h2>Trend over de gemeten tijd</h2>
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 }
 else
@@ -16,47 +16,45 @@ else
 }
 
 
-    <script>
-        window.onload = function() {
+<script>
+window.onload = function() {
 
-            var chart = new CanvasJS.Chart("chartContainer",
+    var chart = new CanvasJS.Chart("chartContainer",
+        {
+            animationEnabled: true,
+            
+            toolTip: {
+                shared: true,
+                fontColor: "black"
+            },
+            data: [
                 {
-                    animationEnabled: true,
-                    title: {
-                        text: "Trends By Month"
-                    },
-                    toolTip: {
-                        shared: true,
-                        fontColor: "black"
-                    },
-                    data: [
-                        {
-                            type: "line",
-                            name: "Positief",
-                            showInLegend: true,
-                            lineColor: "green",
-                            markerColor: "green",
-                            dataPoints: @Html.Raw(ViewBag.Positive)
-                        }, {
-                            type: "line",
-                            name: "Neutraal",
-                            showInLegend: true,
-                            lineColor: "blue",
-                            markerColor: "blue",
-                            dataPoints: @Html.Raw(ViewBag.Neutral)
-                        }, {
-                            type: "line",
-                            name: "Negatief",
-                            showInLegend: true,
-                            lineColor: "red",
-                            markerColor: "red",
-                            dataPoints: @Html.Raw(ViewBag.Negative)
-                        }
-                    ]
-                });
-            chart.render();
-        }
-    </script>
+                    type: "line",
+                    name: "Positief",
+                    showInLegend: true,
+                    lineColor: "green",
+                    markerColor: "green",
+                    dataPoints: @Html.Raw(ViewBag.Positive)
+                }, {
+                    type: "line",
+                    name: "Neutraal",
+                    showInLegend: true,
+                    lineColor: "blue",
+                    markerColor: "blue",
+                    dataPoints: @Html.Raw(ViewBag.Neutral)
+                }, {
+                    type: "line",
+                    name: "Negatief",
+                    showInLegend: true,
+                    lineColor: "red",
+                    markerColor: "red",
+                    dataPoints: @Html.Raw(ViewBag.Negative)
+                }
+            ]
+        });
+    chart.render();
+}
+</script>
 
 
 
