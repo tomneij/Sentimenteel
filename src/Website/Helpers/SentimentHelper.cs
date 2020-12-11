@@ -37,7 +37,7 @@ namespace Website.Helpers
 
             //TODO iets met caching of een no-sql databasejes (cosmo db? misschien?)
 
-            var tweets = twitterFeedService.GetTweets(label, DateTime.Now.AddDays(-10), DateTime.Now);
+            var tweets = twitterFeedService.GetMockedTweets(label, DateTime.Now.AddDays(-10), DateTime.Now);
             foreach (var tweet in tweets)
             {
                 var tweetSentiment = new TweetSentimentModel
@@ -46,7 +46,6 @@ namespace Website.Helpers
                     Message = tweet.Message,
                     Sentiment = sentimentService.Analyze(tweet.Message)
                 };
-
 
                 result.Add(tweetSentiment);
             }
