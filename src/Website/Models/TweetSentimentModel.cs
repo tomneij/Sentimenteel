@@ -8,7 +8,7 @@ namespace Website.Models
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        public string Guid { get; set; }
+        public string Label { get; set; }
 
         public DateTime Timestamp { get; set; }
 

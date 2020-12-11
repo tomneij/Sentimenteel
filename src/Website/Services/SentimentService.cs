@@ -8,7 +8,7 @@ namespace Website.Services
 {
     public class SentimentService
     {
-        private readonly bool mock = true;
+        private readonly bool mock = false;
         private static readonly AzureKeyCredential credentials = new AzureKeyCredential(ConfigurationManager.AppSettings["CognitiveService.Key"]);
         private static readonly Uri endpoint = new Uri(ConfigurationManager.AppSettings["CognitiveService.Endpoint"]);
         

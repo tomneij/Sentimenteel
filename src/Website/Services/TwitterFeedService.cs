@@ -8,6 +8,7 @@ using Tweetinvi;
 using Tweetinvi.Events;
 using Tweetinvi.Exceptions;
 using Tweetinvi.Models;
+using Tweetinvi.Parameters.V2;
 using Website.Models;
 using Website.Repositories;
 
@@ -15,7 +16,7 @@ namespace Website.Services
 {
     public class TwitterFeedService
     {
-        public async Task GetTweetsRealTime()
+        public async Task<IEnumerable<TweetModel>> GetTweetsRealTime(string Keyword)
         {
             try
             {
@@ -30,17 +31,26 @@ namespace Website.Services
                 };
 
                 var client = new TwitterClient(appCredentials);
+                var tweet_params = new SearchTweetsV2Parameters(Keyword) {
+                    StartTime = DateTime.Now.AddDays(-1)
+                };
 
-                var searchIterator = client.SearchV2.GetSearchTweetsV2Iterator("#onvz");
+                var searchIterator = client.SearchV2.GetSearchTweetsV2Iterator(tweet_params);
 
                 while (!searchIterator.Completed)
                 {
                     var searchPage = await searchIterator.NextPageAsync();
                     var searchResponse = searchPage.Content;
                     var tweets = searchResponse.Tweets;
-                    
-                    // ...
+
+                    return tweets.Select(tw => new TweetModel
+                    {
+                        Id = tw.Id,
+                        Message = tw.Text,
+                        Timestamp = tw.CreatedAt.DateTime
+                    }).ToList();                    
                 }
+
             }
             catch (TwitterException e) 
             {
@@ -49,6 +59,8 @@ namespace Website.Services
                     // Rate limits allowance have been exhausted - do your custom handling
                 }
             }
+
+            return Enumerable.Empty<TweetModel>();
         }
 
         public IEnumerable<TweetModel> GetMockedTweets(string keyword, DateTime from, DateTime to)

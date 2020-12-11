@@ -10,14 +10,9 @@ namespace Website.Helpers
 {
     public static class SentimentHelper
     {
-        public static OverviewItemModel GetSentimentOverview(string label)
+        public static OverviewItemModel GetSentimentOverview(LabelModel label)
         {
-            var labelModel = LabelHelper.GetLabel(label);
             var allTweets = SentimentHelper.GetTweetsByLabel(label).ToList();
-
-            var twitterFeedService = new TwitterFeedService();
-
-            var marnix = Task.Run(async () => await twitterFeedService.GetTweetsRealTime());
             
             var summorizedTweets = allTweets.GroupBy(tweet => tweet.Sentiment).Select(group => new
             {
@@ -27,24 +22,41 @@ namespace Website.Helpers
 
             return new OverviewItemModel
             {
-                Name = labelModel.Name,
-                Icon = labelModel.Icon,
+                Name = label.Name,
+                Icon = label.Icon,
                 Positive = Percentage(allTweets.Count, summorizedTweets.FirstOrDefault(group => group.Key.Equals(Sentiment.Positive))?.Count ?? 0),
                 Neutral = Percentage(allTweets.Count,summorizedTweets.FirstOrDefault(group => group.Key.Equals(Sentiment.Neutral))?.Count ?? 0),
                 Negative = Percentage(allTweets.Count, summorizedTweets.FirstOrDefault(group => group.Key.Equals(Sentiment.Negative))?.Count ?? 0),
             };
         }
 
-        public static IEnumerable<TweetSentimentModel> GetTweetsByLabel(string label)
+        public static IEnumerable<TweetSentimentModel> GetTweetsByLabel(LabelModel label)
         {
             var twitterFeedService = new TwitterFeedService();
             var sentimentService = new SentimentService();
             var tweetRepository = new TweetRepository();
-            var tweets = Task.Run(async () => await tweetRepository.RetrieveAllTweets()).Result;
 
+            var storedTweets = Task.Run(async () => await tweetRepository.RetrieveAllTweets()).Result
+                .Where(tw=>tw.Label.Equals(label.Name));
+            result.AddRange(storedTweets);
+
+            var tweets =  Task.Run(async () => await twitterFeedService.GetTweetsRealTime(label.Keyword)).Result;
             foreach (var tweet in tweets)
             {
-                tweet.Sentiment = sentimentService.Analyze(tweet.Message);
+                if (!storedTweets.Any(st => st.Id.Equals(tweet.Id)))
+                {
+                    var tweetSentiment = new TweetSentimentModel
+                    {
+                        Id = tweet.Id,
+                        Label = label.Name,
+                        Timestamp = tweet.Timestamp,
+                        Message = tweet.Message,
+                        Sentiment = sentimentService.Analyze(tweet.Message)
+                    };
+
+                    Task.Run(async () => await tweetRepository.AddTweetIfNotExists(tweetSentiment)).Wait();
+                    result.Add(tweetSentiment);
+                }
             }
 
             return tweets;
@@ -61,11 +73,11 @@ namespace Website.Helpers
             return (int)Math.Round(perc, 0);
         }
 
-        public static TrendModel GetDataPointsModel(string label, DateTime from, DateTime to)
+        public static TrendModel GetDataPointsModel(LabelModel label, DateTime from, DateTime to)
         {
             var model = new TrendModel
             {
-                Label = label
+                Label = label.Name
             };
 
             var tweets = GetTweetsByLabel(label).OrderBy(t => t.Timestamp).ToList();

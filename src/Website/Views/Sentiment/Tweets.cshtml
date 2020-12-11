@@ -40,7 +40,7 @@
             @foreach (var item in Model.Tweets)
             {
                 <tr class="@GetClassName(item.Sentiment)">
-                    <th scope="row" width="100"><p>@item.Timestamp.ToString("dd-MM-yyyy")</p></th>
+                    <th scope="row" width="130"><p>@item.Timestamp.ToString("dd-MM-yyyy HH:mm")</p></th>
                     <td><p class="">@item.Message</p></td>
                     <td><p class="">@item.Sentiment.ToString()</p></td>
                 </tr>

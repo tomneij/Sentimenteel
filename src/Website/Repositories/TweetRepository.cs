@@ -17,7 +17,7 @@ namespace Website.Repositories
         private Database database;
         private Container container;
         private string databaseId = "TweetDatabase";
-        private string containerId = "TweetContainer";
+        private string containerId = "TweetContainer2";
 
         public TweetRepository()
         {
@@ -34,7 +34,7 @@ namespace Website.Repositories
 
         public async Task CreateContainerAsync()
         {
-            this.container = await this.database.CreateContainerIfNotExistsAsync(containerId, "/Guid");
+            this.container = await this.database.CreateContainerIfNotExistsAsync(containerId, "/id");
             Console.WriteLine("Created Container: {0}\n", this.container.Id);
         }
 
@@ -51,13 +51,13 @@ namespace Website.Repositories
             try
             {
                 // Read the item to see if it exists.  
-                ItemResponse<TweetSentimentModel> tweetResponse = await this.container.ReadItemAsync<TweetSentimentModel>(tweet.Id, new PartitionKey(tweet.Guid));
+                ItemResponse<TweetSentimentModel> tweetResponse = await this.container.ReadItemAsync<TweetSentimentModel>(tweet.Id, new PartitionKey(tweet.Id));
                 Console.WriteLine("Item in database with id: {0} already exists\n", tweetResponse.Resource.Id);
             }
             catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
                 // Create an item in the container representing tweet1. Note we provide the value of the partition key for this item, which is "abcde123"
-                ItemResponse<TweetSentimentModel> tweet1Response = await this.container.CreateItemAsync<TweetSentimentModel>(tweet, new PartitionKey(tweet.Guid));
+                ItemResponse<TweetSentimentModel> tweet1Response = await this.container.CreateItemAsync<TweetSentimentModel>(tweet, new PartitionKey(tweet.Id));
 
                 // Note that after creating the item, we can access the body of the item with the Resource property off the ItemResponse. We can also access the RequestCharge property to see the amount of RUs consumed on this request.
                 Console.WriteLine("Created item in database with id: {0} Operation consumed {1} RUs.\n", tweet1Response.Resource.Id, tweet1Response.RequestCharge);
@@ -73,7 +73,6 @@ namespace Website.Repositories
                 .Select(t => new TweetSentimentModel
                 {
                     Id = t.Id,
-                    Guid = t.Guid,
                     Message = t.Message,
                     Sentiment = Sentiment.Unknown,
                     Timestamp = t.Timestamp
@@ -109,7 +108,7 @@ namespace Website.Repositories
 
         public async Task UpdateTweetAsync(TweetSentimentModel tweet)
         {
-            await this.container.ReplaceItemAsync<TweetSentimentModel>(tweet, tweet.Id, new PartitionKey(tweet.Guid));
+            await this.container.ReplaceItemAsync<TweetSentimentModel>(tweet, tweet.Id, new PartitionKey(tweet.Id));
         }
 
         public async Task DeleteTweetAsync(string id, string guid)

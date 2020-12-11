@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Website.Helpers;
@@ -17,7 +16,7 @@ namespace Website.Controllers
            
             foreach (var label in Constants.Labels)
             {
-                var overviewItem = SentimentHelper.GetSentimentOverview(label.Name);
+                var overviewItem = SentimentHelper.GetSentimentOverview(label);
                 overviewModel.Items.Add(overviewItem);
             }
 
@@ -44,7 +43,7 @@ namespace Website.Controllers
                 var viewModel = new DetailModel
                 {
                     Label = label,
-                    Tweets = SentimentHelper.GetTweetsByLabel(label.Name).ToList()
+                    Tweets = SentimentHelper.GetTweetsByLabel(label).ToList()
                 };
 
                 return View(viewModel);
@@ -61,7 +60,7 @@ namespace Website.Controllers
             {
                 DateTime from = DateTime.Now.AddDays(-10);
 
-                var model = SentimentHelper.GetDataPointsModel(id, from, DateTime.Now);
+                var model = SentimentHelper.GetDataPointsModel(label, from, DateTime.Now);
 
                 ViewBag.Positive = JsonConvert.SerializeObject(model.PositiveDataPoints);
                 ViewBag.Neutral = JsonConvert.SerializeObject(model.NeutralDataPoints);
