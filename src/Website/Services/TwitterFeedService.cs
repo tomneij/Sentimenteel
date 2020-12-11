@@ -36,7 +36,6 @@ namespace Website.Services
                 stream.AddLanguageFilter(LanguageFilter.Dutch);
 
                 // add tracks
-                //stream.AddTrack("onvz");
                 stream.AddTrack("@onvz");
 
                 stream.MatchingTweetReceived += OnMatchedTweet;
