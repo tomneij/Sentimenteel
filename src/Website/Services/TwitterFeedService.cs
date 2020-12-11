@@ -30,18 +30,17 @@ namespace Website.Services
                 };
 
                 var client = new TwitterClient(appCredentials);
-                
-                var stream = client.Streams.CreateFilteredStream();
 
-                // add a language
-                stream.AddLanguageFilter(LanguageFilter.Dutch);
+                var searchIterator = client.SearchV2.GetSearchTweetsV2Iterator("#onvz");
 
-                // add tracks
-                stream.AddTrack("@onvz");
-
-                stream.MatchingTweetReceived += OnMatchedTweet;
-
-                await stream.StartMatchingAnyConditionAsync();
+                while (!searchIterator.Completed)
+                {
+                    var searchPage = await searchIterator.NextPageAsync();
+                    var searchResponse = searchPage.Content;
+                    var tweets = searchResponse.Tweets;
+                    
+                    // ...
+                }
             }
             catch (TwitterException e) 
             {

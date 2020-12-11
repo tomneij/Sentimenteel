@@ -14,6 +14,10 @@ namespace Website.Helpers
         {
             var labelModel = LabelHelper.GetLabel(label);
             var allTweets = SentimentHelper.GetTweetsByLabel(label).ToList();
+
+            var twitterFeedService = new TwitterFeedService();
+
+            var marnix = Task.Run(async () => await twitterFeedService.GetTweetsRealTime());
             
             var summorizedTweets = allTweets.GroupBy(tweet => tweet.Sentiment).Select(group => new
             {
