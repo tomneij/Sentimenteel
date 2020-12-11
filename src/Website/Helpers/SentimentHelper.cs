@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Website.Models;
+using Website.Repositories;
 using Website.Services;
 
 namespace Website.Helpers
@@ -31,26 +33,17 @@ namespace Website.Helpers
 
         public static IEnumerable<TweetSentimentModel> GetTweetsByLabel(string label)
         {
-            var result = new List<TweetSentimentModel>();
             var twitterFeedService = new TwitterFeedService();
             var sentimentService = new SentimentService();
+            var tweetRepository = new TweetRepository();
+            var tweets = Task.Run(async () => await tweetRepository.RetrieveAllTweets()).Result;
 
-            //TODO iets met caching of een no-sql databasejes (cosmo db? misschien?)
-
-            var tweets = twitterFeedService.GetMockedTweets(label, DateTime.Now.AddDays(-10), DateTime.Now);
             foreach (var tweet in tweets)
             {
-                var tweetSentiment = new TweetSentimentModel
-                {
-                    Timestamp = tweet.Timestamp,
-                    Message = tweet.Message,
-                    Sentiment = sentimentService.Analyze(tweet.Message)
-                };
-
-                result.Add(tweetSentiment);
+                tweet.Sentiment = sentimentService.Analyze(tweet.Message);
             }
 
-            return result;
+            return tweets;
         }
 
         private static int Percentage(int total, int sub)

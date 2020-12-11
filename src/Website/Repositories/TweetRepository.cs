@@ -22,6 +22,8 @@ namespace Website.Repositories
         public TweetRepository()
         {
             this.cosmosClient = new CosmosClient(EndpointUri, PrimaryKey);
+            this.database = cosmosClient.GetDatabase(databaseId);
+            this.container = database.GetContainer(containerId);
         }
 
         public async Task CreateDatabaseAsync()
