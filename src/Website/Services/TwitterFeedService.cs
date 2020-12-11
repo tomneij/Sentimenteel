@@ -9,6 +9,7 @@ using Tweetinvi.Events;
 using Tweetinvi.Exceptions;
 using Tweetinvi.Models;
 using Website.Models;
+using Website.Repositories;
 
 namespace Website.Services
 {
