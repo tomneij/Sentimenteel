@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Onze innovatie";
+}
+<div class="jumbotron">
+    <h1>@ViewBag.Title.</h1>
+    <p class="lead">Het project</p>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <p>
+            <h3>Hoe en wat denken mensen over ONVZ?</h3>            
+            Een "verbetering" in de klantenservice, of misschien wel mensen die klagen over langzame pagina's waaruit we proactief verbeteringen kunnen doorvoeren.
+        </p>
+
+        <p>
+            <h3>De Oplossing:</h3>
+            Voor onze innovatie hebben we gebruik gemaakt van de twitter feed. De tweets worden door de cognitieve text analyse van
+            Azure gehaald en daaruit komt een sentiment. Dit wordt samen opgeslagen en hierover wordt een berekening gedaan en een
+            trendlijn getoond.
+        </p>
+
+        <p>
+            <h3>Gebruikte technieken:</h3>
+            <ul>
+                <li>TweetInvi (Api voor het ophalen van tweets)</li>
+                <li>Azure Cognitieve Text Analyse</li>
+                <li>CosmoDB (voor het opslaan van de tweets)</li>
+            </ul>
+
+            Voor de "Techies" onder ons is hier de code te vinden: <a href="https://github.com/tomneij/Sentimenteel">GitHub</a>
+        </p>
+
+        <p>
+            <h3>Voordelen:</h3>
+            <ul>
+                <li>Geen kosten voor brandmonitor abonnement</li>
+                <li>Integratie mogelijk met Sitecore</li>
+                <li>Volledige controle</li>
+            </ul>
+        </p>
+    </div>
+</div>

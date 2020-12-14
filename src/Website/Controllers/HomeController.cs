@@ -9,6 +9,23 @@ namespace Website.Controllers
             return View();
         }
 
+
+        public ActionResult Innovation()
+        {
+            ViewBag.Message = "De Innovatie";
+
+            return View();
+        }
+
+
+        public ActionResult Future()
+        {
+            ViewBag.Message = "What's next?";
+
+            return View();
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Over ons";
