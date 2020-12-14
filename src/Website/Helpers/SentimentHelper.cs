@@ -35,6 +35,7 @@ namespace Website.Helpers
             var twitterFeedService = new TwitterFeedService();
             var sentimentService = new SentimentService();
             var tweetRepository = new TweetRepository();
+            var result = new List<TweetSentimentModel>();
 
             var storedTweets = Task.Run(async () => await tweetRepository.RetrieveAllTweets()).Result
                 .Where(tw=>tw.Label.Equals(label.Name));
@@ -59,7 +60,7 @@ namespace Website.Helpers
                 }
             }
 
-            return tweets;
+            return result;
         }
 
         private static int Percentage(int total, int sub)
